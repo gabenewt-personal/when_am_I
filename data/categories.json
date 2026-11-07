@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "id": "geologic-periods",
+      "label": "Geologic Periods",
+      "mode": "when",
+      "subtitle": "Identify the geologic period, not an era or epoch.",
+      "options": [
+        {
+          "id": "cambrian",
+          "label": "Cambrian",
+          "aliases": []
+        },
+        {
+          "id": "ordovician",
+          "label": "Ordovician",
+          "aliases": []
+        },
+        {
+          "id": "silurian",
+          "label": "Silurian",
+          "aliases": []
+        },
+        {
+          "id": "devonian",
+          "label": "Devonian",
+          "aliases": []
+        },
+        {
+          "id": "carboniferous",
+          "label": "Carboniferous",
+          "aliases": []
+        },
+        {
+          "id": "permian",
+          "label": "Permian",
+          "aliases": []
+        },
+        {
+          "id": "triassic",
+          "label": "Triassic",
+          "aliases": []
+        },
+        {
+          "id": "jurassic",
+          "label": "Jurassic",
+          "aliases": []
+        },
+        {
+          "id": "cretaceous",
+          "label": "Cretaceous",
+          "aliases": []
+        },
+        {
+          "id": "paleogene",
+          "label": "Paleogene",
+          "aliases": []
+        },
+        {
+          "id": "neogene",
+          "label": "Neogene",
+          "aliases": []
+        },
+        {
+          "id": "quaternary",
+          "label": "Quaternary",
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "id": "us-history-decades",
+      "label": "Decades of U.S. History",
+      "mode": "when",
+      "subtitle": "Identify the decade (for example, 1920s), not a named event or broad era.",
+      "options": [
+        {
+          "id": "1900s",
+          "label": "1900s",
+          "aliases": []
+        },
+        {
+          "id": "1910s",
+          "label": "1910s",
+          "aliases": []
+        },
+        {
+          "id": "1920s",
+          "label": "1920s",
+          "aliases": [
+            "Roaring Twenties",
+            "nineteen twenties"
+          ]
+        },
+        {
+          "id": "1930s",
+          "label": "1930s",
+          "aliases": [
+            "nineteen thirties"
+          ]
+        },
+        {
+          "id": "1940s",
+          "label": "1940s",
+          "aliases": []
+        },
+        {
+          "id": "1950s",
+          "label": "1950s",
+          "aliases": []
+        },
+        {
+          "id": "1960s",
+          "label": "1960s",
+          "aliases": [
+            "nineteen sixties"
+          ]
+        },
+        {
+          "id": "1970s",
+          "label": "1970s",
+          "aliases": []
+        },
+        {
+          "id": "1980s",
+          "label": "1980s",
+          "aliases": []
+        },
+        {
+          "id": "1990s",
+          "label": "1990s",
+          "aliases": []
+        },
+        {
+          "id": "2000s",
+          "label": "2000s",
+          "aliases": []
+        },
+        {
+          "id": "2010s",
+          "label": "2010s",
+          "aliases": []
+        },
+        {
+          "id": "2020s",
+          "label": "2020s",
+          "aliases": []
+        }
+      ]
+    }
+  ]
+}

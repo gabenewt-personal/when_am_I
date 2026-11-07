@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "demo": true,
+  "notes": "Seven editorial fixtures for prototype testing, not a production calendar. In a public launch use a reviewed, explicit date-to-scenario schedule.",
+  "scenarios": [
+    {
+      "id": "carboniferous-swamp",
+      "categoryId": "geologic-periods",
+      "answerId": "carboniferous",
+      "sceneTitle": "Beneath the Coal Forest",
+      "contextForEditor": "Late Carboniferous, ~310 million years ago, lowland coal swamp in what is now Euramerica.",
+      "clues": [
+        "You wake beneath a ceiling of green. Warm mist clings to your skin, and the ground gives beneath your feet like a soaked sponge.",
+        "Water threads through a forest of strangely patterned trunks. There is no birdsong, only the faint splash of something moving in the shallows.",
+        "Towering clubmosses and horsetails crowd the light. You search the undergrowth for a single flower and find none.",
+        "A dragonfly-like hunter cuts through the humid air, its strange wings stretching more than half a meter across.",
+        "A huge, many-legged arthropod moves through the fallen vegetation. Amphibious creatures wait along the dark pools.",
+        "These swamp forests will leave immense coal seams behind. You are standing roughly 310 million years before your own time."
+      ],
+      "epilogue": "The Carboniferous Period lasted roughly 359 to 299 million years ago. Vast swamp forests helped form major coal deposits, while large arthropods and early land vertebrates occupied a very different Earth.",
+      "visualBrief": "Begin with indistinct humid green silhouettes. Later reveal striated lycopsid trunks, then an insect-like flyer, then the forest floor. Never depict identifying organisms before their textual clues.",
+      "sourceUrls": [
+        "https://carboniferous.stratigraphy.org/",
+        "https://biodiversity.ku.edu/exhibits/carboniferous"
+      ]
+    },
+    {
+      "id": "jazz-after-dark",
+      "categoryId": "us-history-decades",
+      "answerId": "1920s",
+      "sceneTitle": "A Door Without a Sign",
+      "contextForEditor": "United States urban nightlife, late 1920s, during Prohibition.",
+      "clues": [
+        "You wake to the clatter of traffic and the smell of rain rising from warm pavement. Music leaks from somewhere below the street.",
+        "A newsboy calls out headlines while a motorcar squeezes past a streetcar. The city seems intent on moving faster than its own shadows.",
+        "A voice crackles from a radio in a shop window. Nearby, a woman with a sharply bobbed haircut laughs beneath a cloche hat.",
+        "After dark, a brass horn pulls you toward an unmarked basement door. Someone on the other side asks you for a word you do not know.",
+        "Inside, the band is playing jazz and the drinks are poured discreetly. The club has plenty of customers, but no lawful right to sell liquor.",
+        "The country has banned alcohol, yet its cities are alive with speakeasies, new dances, and the restless confidence of the Jazz Age."
+      ],
+      "epilogue": "The 1920s in the United States were marked by Prohibition, the growth of radio, changing urban culture, and a vibrant jazz scene. The era was also shaped by major social tensions and inequalities beyond the nightlife remembered today.",
+      "visualBrief": "First show wet cobblestones, indistinct downtown buildings and a glowing basement window. Only later reveal period-specific fashions, radio set and jazz-club details.",
+      "sourceUrls": [
+        "https://prohibition.themobmuseum.org/the-history/the-prohibition-underworld/the-speakeasies-of-the-1920s/",
+        "https://prohibition.themobmuseum.org/the-history/how-prohibition-changed-american-culture/jazz-and-jukeboxes/"
+      ]
+    },
+    {
+      "id": "jurassic-river",
+      "categoryId": "geologic-periods",
+      "answerId": "jurassic",
+      "sceneTitle": "The River of Giants",
+      "contextForEditor": "Late Jurassic, ~150 million years ago, vegetated North American floodplain.",
+      "clues": [
+        "You wake beside a broad river. The air smells of wet earth, and distant thunder rolls across a flat green horizon.",
+        "Conifers and cycads crowd the banks. There is no familiar meadow grass, and no flowering shrub to break the endless green.",
+        "The earth trembles with slow, heavy footsteps. Far away, something tall moves above the treetops, bending branches as it feeds.",
+        "A long-necked dinosaur emerges along the water, its massive body moving with a patience that makes you feel very small.",
+        "Another animal crosses a patch of sun, its back edged with tall bony plates. The river plain is ruled by sauropods and their armored neighbors.",
+        "You have traveled roughly 150 million years into Earth’s past. These giants flourish long before the last great dinosaur extinction."
+      ],
+      "epilogue": "During the Jurassic Period, roughly 201 to 145 million years ago, many dinosaur groups diversified. Forests included conifers, cycads and ferns, while enormous sauropods roamed some floodplains.",
+      "visualBrief": "Begin as generic floodplain with mist, add conifer details with clue 2, first indistinct huge silhouette with clue 3, reveal sauropod only with clue 4 and plated dinosaur only with clue 5.",
+      "sourceUrls": [
+        "https://natmus.humboldt.edu/exhibits/life-through-time/visual-timeline/jurassic-period"
+      ]
+    },
+    {
+      "id": "world-watches-moon",
+      "categoryId": "us-history-decades",
+      "answerId": "1960s",
+      "sceneTitle": "The Whole World Watching",
+      "contextForEditor": "United States, July 1969, lunar landing television coverage.",
+      "clues": [
+        "You wake to the hum of a television in the next room. Outside, summer heat settles over a neighborhood of small front lawns.",
+        "A transistor radio plays popular music with a sharp electric edge. In the paper, images of demonstrations sit beside reports from a distant war.",
+        "Inside a school, brightly colored diagrams show rockets and the planets. Children argue about whether people will ever really cross the space between worlds.",
+        "At dinner, the grown-ups talk about astronauts as if they were neighbors. A distant rivalry between two superpowers seems to reach all the way into the sky.",
+        "Families gather around television sets to watch a spacecraft approach the Moon. The grainy picture is carried into millions of living rooms.",
+        "It is July 1969. A human being is about to step onto another world, and nearly everyone with a television is watching."
+      ],
+      "epilogue": "The 1960s saw the Space Race culminate in Apollo 11’s first crewed Moon landing in July 1969, alongside profound political and cultural change in the United States.",
+      "visualBrief": "Start inside an indistinct mid-century living room, then add transistor radio, rocket school diagram, and finally a tiny monochrome TV image of lunar terrain only at clue 5.",
+      "sourceUrls": [
+        "https://www.nasa.gov/mission/apollo-11/"
+      ]
+    },
+    {
+      "id": "devonian-shallows",
+      "categoryId": "geologic-periods",
+      "answerId": "devonian",
+      "sceneTitle": "The Water Before the Forest",
+      "contextForEditor": "Late Devonian, ~375 million years ago, coastal shallows and emerging vegetation.",
+      "clues": [
+        "You wake at the edge of a shallow estuary. The tide leaves shining pools among the mud, and the wind smells sharply of salt.",
+        "The land is surprisingly bare in places, but strange stands of early trees rise along the water. Their shadows fall across soil that seems newly made.",
+        "The shallows are alive with fish of unfamiliar shapes, some enclosed in plates of bony armor. The water feels far more crowded than the shore.",
+        "A broad-headed creature braces itself in the shallows on sturdy, limb-like fins. It does not quite belong to the sea or the land you recognize.",
+        "Some of the first forests spread inland while early four-limbed vertebrates begin their evolutionary story. Fish dominate an age of remarkable change.",
+        "You have arrived around 375 million years ago, in a period often nicknamed the Age of Fishes."
+      ],
+      "epilogue": "The Devonian Period, roughly 419 to 359 million years ago, witnessed the diversification of fishes, the rise of early forests, and major transitions in vertebrate evolution.",
+      "visualBrief": "Start with mist over tidal pools, then add primitive trees, armored fish in clear water and, late, a fin-limbed shoreline inhabitant.",
+      "sourceUrls": [
+        "https://www.nps.gov/articles/000/devonian-period.htm",
+        "https://ocean.si.edu/through-time/bony-beginnings-rise-vertebrate-innovation-devonian"
+      ]
+    },
+    {
+      "id": "dust-on-windowsill",
+      "categoryId": "us-history-decades",
+      "answerId": "1930s",
+      "sceneTitle": "A Sky Made of Dust",
+      "contextForEditor": "Oklahoma Panhandle, April 1935, Dust Bowl during Great Depression.",
+      "clues": [
+        "You wake to an orange light at the window. The house is still, but the air tastes faintly of earth.",
+        "Outside, a field lies bare and cracked. At the fence line, wind has heaped the loose soil into drifts as if it were winter snow.",
+        "A family has tucked rags around the doors, yet fine dust settles on the table. Someone speaks quietly about another failed crop.",
+        "A neighbor mentions leaving for California. Work is scarce everywhere, and the farm has become harder to defend with every season.",
+        "By afternoon a wall of darkness rises across the plains. The wind turns the sky black in a storm people have begun calling a black blizzard.",
+        "It is the middle of the Great Depression. Across the southern Plains, drought and blowing topsoil have given this disaster its name: the Dust Bowl."
+      ],
+      "epilogue": "The Dust Bowl devastated the Great Plains in the 1930s. Severe drought, exposed topsoil and economic hardship drove destructive storms and forced many families to migrate.",
+      "visualBrief": "Show a farmhouse window with diffuse amber light, then cracked soil and drifting dust; delay the dramatic black storm front until clue 5.",
+      "sourceUrls": [
+        "https://www.weather.gov/oun/events-19350414",
+        "https://www.loc.gov/classroom-materials/dust-bowl-migration/"
+      ]
+    },
+    {
+      "id": "last-dinosaur-forest",
+      "categoryId": "geologic-periods",
+      "answerId": "cretaceous",
+      "sceneTitle": "Before the Silence",
+      "contextForEditor": "Late Cretaceous western North America, ~68 million years ago.",
+      "clues": [
+        "You wake beside a river in a warm lowland forest. Small flying creatures stir in the light, and the damp air carries the scent of leaves.",
+        "Unlike some ancient landscapes, this one has flowering plants among its ferns and conifers. The world looks strange, but unexpectedly familiar.",
+        "Across the water, enormous animals move through the undergrowth. One pushes a broad, beaked head through the foliage.",
+        "A three-horned giant stands at the forest edge, turning its great shield-like frill toward a sudden sound.",
+        "The branches shake as a massive two-legged predator emerges, its powerful jaws dwarfing its small forelimbs.",
+        "You are near the end of the dinosaurs’ long reign, around 68 million years ago. A catastrophe in the geologically near future will change life on Earth."
+      ],
+      "epilogue": "The Cretaceous Period ended about 66 million years ago. Flowering plants spread widely during this period, and Late Cretaceous ecosystems included Triceratops and Tyrannosaurus rex before the end-Cretaceous mass extinction.",
+      "visualBrief": "Begin with lightly wooded river, reveal flowers clue 2, indistinct dinosaur shapes clue 3, three-horned creature clue 4, large tyrannosaur clue 5. Never show dinosaurs in initial key art.",
+      "sourceUrls": [
+        "https://home.nps.gov/articles/000/cretaceous-period.htm",
+        "https://www.amnh.org/dinosaurs/tyrannosaurus-rex"
+      ]
+    }
+  ]
+}

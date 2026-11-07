@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "notes": "Date-to-scenario manifest. Daily reset is 00:00 UTC. Dates are UTC calendar dates (YYYY-MM-DD). Explicit entries always win. 'demo-rotation' cycles the demo fixtures for any unscheduled date on/after the epoch; set fallback to 'none' for production so unscheduled days show 'no mystery today' instead of silently repeating content.",
+  "epoch": "2026-11-01",
+  "fallback": "demo-rotation",
+  "demoRotation": [
+    "carboniferous-swamp",
+    "jazz-after-dark",
+    "jurassic-river",
+    "world-watches-moon",
+    "devonian-shallows",
+    "dust-on-windowsill",
+    "last-dinosaur-forest"
+  ],
+  "entries": []
+}
