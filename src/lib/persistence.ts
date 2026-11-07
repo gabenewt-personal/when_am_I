@@ -65,6 +65,20 @@ export function browserStorage(): StorageLike | null {
   }
 }
 
+/**
+ * Read-only view of localStorage: reads pass through, writes are dropped. Demo Mode
+ * uses this to show "played today" badges without any chance of touching real data
+ * (it doesn't even run the write probe in browserStorage()).
+ */
+export function readOnlyStorage(): StorageLike | null {
+  try {
+    const s = window.localStorage;
+    return { getItem: (k) => s.getItem(k), setItem: () => {}, removeItem: () => {} };
+  } catch {
+    return null;
+  }
+}
+
 function readJson(storage: StorageLike | null, key: string): unknown {
   if (!storage) return null;
   try {

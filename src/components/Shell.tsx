@@ -15,19 +15,23 @@ function Hourglass() {
   );
 }
 
-export function Shell({ children, demo }: { children: ReactNode; demo: boolean }) {
+export function Shell({ children, demo, practice = false }: { children: ReactNode; demo: boolean; practice?: boolean }) {
   return (
-    <div className="console">
+    <div className={`console${practice ? " console--practice" : ""}`}>
       <header className="shell-top">
         <p className="logo">
           <Hourglass />
           WHEN AM I?
         </p>
-        {demo && <span className="chip chip--gold">Demo edition</span>}
+        {practice ? (
+          <span className="chip chip--demo">Demo mode</span>
+        ) : (
+          demo && <span className="chip chip--gold">Demo edition</span>
+        )}
       </header>
       <main className="screen">{children}</main>
       <footer className="shell-bottom">
-        <span className="label">A daily mystery through time</span>
+        <span className="label">{practice ? "Practice · progress not saved" : "A daily mystery through time"}</span>
       </footer>
     </div>
   );

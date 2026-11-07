@@ -16,6 +16,7 @@ export function Mystery({
   onGuess,
   onSkip,
   onHome,
+  homeLabel = "◀ Home (progress is saved)",
 }: {
   category: Category;
   artId: string | null;
@@ -25,6 +26,7 @@ export function Mystery({
   onGuess: (optionId: string) => void;
   onSkip: () => void;
   onHome: () => void;
+  homeLabel?: string;
 }) {
   const [selected, setSelected] = useState<CategoryOption | null>(null);
   const latestRef = useRef<HTMLParagraphElement>(null);
@@ -159,7 +161,7 @@ export function Mystery({
       )}
 
       <button className="link-btn" type="button" onClick={onHome}>
-        ◀ Home (progress is saved)
+        {homeLabel}
       </button>
     </div>
   );

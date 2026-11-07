@@ -27,6 +27,16 @@ The app is a **static export** (`output: "export"`): no server, database, API ke
 - **Cloudflare Workers** (same setup as gabrielnewton.com): add a `wrangler.jsonc` with `"assets": { "directory": "./out" }`, then `npm run build && npx wrangler deploy`.
 - **Anything else:** upload `out/`.
 
+## Demo Mode (`/demo`)
+
+Replay any mystery as often as you like without touching your daily progress. Open it from the **Demo mode** link at the bottom of Home, or go straight to `/demo`.
+
+- **Menu:** every scenario, listed with its category and scene title. Today's mystery is tagged, along with your real result if you've played it.
+- **Controls:** **Restart**, **Jump to clue** (1–6), **Mysteries** (switch without reloading) and **Home**. A red DEMO MODE chip, the control bar and a dashed red frame show you're in demo.
+- **Same game:** it runs the real rules (`applyGuess` / `applySkip`), the same feedback text (`src/lib/round.ts`) and the same Mystery, autocomplete, art and Discovery screens. Jump to clue replays real reveals, so the points shown match what a player would have left. The share line ends in `· DEMO`.
+- **Isolation:** demo rounds live only in React state and vanish when you leave the page. `Demo.tsx` never imports `saveGame`, `recordResult`, `clearGame` or `browserStorage`, and a test fails if it ever does. The "played today" badge reads through `readOnlyStorage()`, which drops writes. Demo rounds use the day key `demo`, which can never be recorded as a real day. There are no analytics or leaderboards to isolate from.
+- **Public by design:** `/demo` ships in production (it's marked noindex). It lets anyone play any mystery and shows scene titles. That's fine for the demo rotation, but before a real launch either gate or remove it, or limit it to past mysteries.
+
 ## How it's built
 
 | Module | Responsibility |
@@ -43,7 +53,7 @@ The app is a **static export** (`output: "export"`): no server, database, API ke
 | `src/lib/viewport.ts` | Visual-viewport scroll helpers for the on-screen keyboard |
 | `src/lib/persistence.ts` | localStorage: replay-based restore, history, streak |
 | `src/art/` | Clue-gated SVG pixel scenes (placeholders) |
-| `src/components/` | Home, Mystery, Discovery, accessible Combobox, DevPanel |
+| `src/components/` | Home, Mystery, Discovery, accessible Combobox, Demo (+ `/demo` route), DevPanel |
 
 A future **Where Am I?** mode is a new category with `"mode": "where"` plus scenarios, using the same engine.
 

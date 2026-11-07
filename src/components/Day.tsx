@@ -14,6 +14,7 @@ import {
   saveGame,
   HISTORY_KEY,
 } from "@/lib/persistence";
+import { feedbackFor } from "@/lib/round";
 import type { DailyPick } from "@/lib/schedule";
 import { Discovery } from "./Discovery";
 import { Home } from "./Home";
@@ -85,8 +86,9 @@ export function Day({
   };
 
   const commit = (r: StepResult) => {
+    const text = feedbackFor(r);
     if (!r.ok) {
-      if (r.reason === "repeat") setFeedback({ text: "You've already tried that answer.", id: Date.now() });
+      if (text) setFeedback({ text, id: Date.now() });
       return;
     }
     setGame(r.state);
@@ -96,10 +98,7 @@ export function Day({
       go("discovery");
       return;
     }
-    setFeedback({
-      text: r.outcome === "wrong" ? "Not quite. The world offers another clue." : "The world offers another clue.",
-      id: Date.now(),
-    });
+    setFeedback(text ? { text, id: Date.now() } : null);
   };
 
   const stats = computeStats(history, todayKey);

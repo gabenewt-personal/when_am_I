@@ -15,6 +15,8 @@ export function Discovery({
   revelation,
   puzzleNumber,
   onHome,
+  homeLabel = "◀ Return home",
+  demo = false,
 }: {
   category: Category;
   artId: string | null;
@@ -23,12 +25,15 @@ export function Discovery({
   revelation: Revelation;
   puzzleNumber: number;
   onHome: () => void;
+  homeLabel?: string;
+  /** Demo Mode: label the share line so a practice run can't pass for a daily result. */
+  demo?: boolean;
 }) {
   const [shared, setShared] = useState<string | null>(null);
   const solved = game.status === "solved";
   const answer = category.options.find((o) => o.id === revelation.answerId)?.label ?? revelation.answerId;
   const labelOf = (id: string) => category.options.find((o) => o.id === id)?.label ?? id;
-  const text = shareText(game, puzzleNumber);
+  const text = demo ? `${shareText(game, puzzleNumber)} · DEMO` : shareText(game, puzzleNumber);
 
   const share = async () => {
     try {
@@ -126,7 +131,7 @@ export function Discovery({
       )}
 
       <button className="btn btn--wide" type="button" onClick={onHome}>
-        ◀ Return home
+        {homeLabel}
       </button>
     </div>
   );

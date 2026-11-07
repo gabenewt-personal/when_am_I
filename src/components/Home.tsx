@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { Category } from "@/lib/content/types";
 import { displayScore, MAX_CLUES, POINTS, type GameState } from "@/lib/game";
 import type { Stats } from "@/lib/persistence";
@@ -109,6 +110,10 @@ export function Home(props: Props) {
           <li>One mystery a day for everyone. No timer — take your time.</li>
         </ol>
       </details>
+
+      <Link className="link-btn" href="/demo">
+        Demo mode ▶ replay any mystery
+      </Link>
     </div>
   );
 }
