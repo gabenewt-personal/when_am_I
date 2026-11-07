@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { SceneArt } from "@/art/SceneArt";
 import type { Category, CategoryOption } from "@/lib/content/types";
 import { displayScore, guessedIds, MAX_CLUES, POINTS, type GameState } from "@/lib/game";
+import { scrollByDelta, scrollDeltaToShow, visibleArea } from "@/lib/viewport";
 import { Combobox } from "./Combobox";
 
 export function Mystery({
@@ -32,13 +33,36 @@ export function Mystery({
   const labelOf = (id: string) => category.options.find((o) => o.id === id)?.label ?? id;
   const revealed = clues.slice(0, game.clue);
 
-  // When a new clue arrives (not on first mount), bring it into view.
-  const firstClue = useRef(game.clue);
+  const formRef = useRef<HTMLFormElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
+
+  // Bring the latest clue into view together with the answer field below it, so the
+  // player can read and respond without hunting. Earlier clues stay in the page above.
+  // On a new clue, focus moves to it (without a jump) so screen readers read it next.
+  const showLatest = useCallback((isNew: boolean) => {
+    const clue = latestRef.current;
+    const form = formRef.current;
+    if (!clue || !form) return;
+    if (isNew) clue.focus({ preventScroll: true });
+    const delta = scrollDeltaToShow(clue.getBoundingClientRect().top, form.getBoundingClientRect().bottom, visibleArea());
+    if (isNew) scrollByDelta(delta);
+    else window.scrollBy({ top: delta });
+  }, []);
+
+  // Resuming mid-round: start at the latest clue rather than the top.
+  const mountClue = useRef(game.clue);
   useEffect(() => {
-    if (game.clue !== firstClue.current) {
-      latestRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
-    }
-  }, [game.clue]);
+    // Layout is already committed here, so measuring synchronously is safe (and a
+    // second strict-mode run finds nothing left to scroll).
+    if (mountClue.current > 1) showLatest(false);
+  }, [showLatest]);
+
+  const lastClue = useRef(game.clue);
+  useEffect(() => {
+    if (game.clue === lastClue.current) return;
+    lastClue.current = game.clue;
+    showLatest(true);
+  }, [game.clue, showLatest]);
 
   return (
     <div className="mystery">
@@ -75,6 +99,7 @@ export function Mystery({
           <p
             key={i}
             ref={i === revealed.length - 1 ? latestRef : undefined}
+            tabIndex={i === revealed.length - 1 ? -1 : undefined}
             className={`clue${i === revealed.length - 1 ? " clue--new" : ""}`}
           >
             <span className="clue__n label" aria-label={`Clue ${i + 1}`}>
@@ -90,6 +115,7 @@ export function Mystery({
       </p>
 
       <form
+        ref={formRef}
         className="guess"
         onSubmit={(e) => {
           e.preventDefault();
@@ -100,8 +126,15 @@ export function Mystery({
         }}
       >
         <div className="guess__row">
-          <Combobox key={game.events.length} category={category} triedIds={tried} selected={selected} onSelect={setSelected} />
-          <button className="btn btn--a guess__submit" type="submit" disabled={!selected}>
+          <Combobox
+            key={game.events.length}
+            category={category}
+            triedIds={tried}
+            selected={selected}
+            onSelect={setSelected}
+            onPicked={() => submitRef.current?.focus({ preventScroll: true })}
+          />
+          <button ref={submitRef} className="btn btn--a guess__submit" type="submit" disabled={!selected}>
             Guess
           </button>
         </div>

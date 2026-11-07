@@ -350,6 +350,78 @@ button { cursor: pointer; }
 .sources .label { width: 100%; }
 .sources a { color: var(--green); }
 
+
+/* Reveal sequence: scan the scene in, stamp the banner, type the answer, then plot it in time. */
+.result-banner { animation: stamp 0.36s steps(3) both; }
+.scene--reveal { position: relative; }
+.scene--reveal .scene-art { animation: scan-in 0.72s steps(9) 0.1s both; }
+.scene--reveal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  pointer-events: none;
+  opacity: 0;
+  animation: flash 0.24s steps(2) 0.82s both;
+}
+.answer__type {
+  display: inline-block;
+  vertical-align: bottom;
+  overflow: hidden;
+  white-space: nowrap;
+  width: calc(var(--n) * 1ch);
+  animation: type calc(var(--n) * 55ms) steps(var(--n)) 0.95s both;
+}
+.answer__caret { display: inline-block; margin-left: 2px; color: var(--gold-dark); opacity: 0; animation: caret 0.3s steps(1) 0.95s 6; }
+
+.timeline { display: flex; flex-direction: column; gap: 2px; }
+.tl-visual { display: flex; flex-direction: column; margin-top: 4px; }
+.tl-visual > .tl-bar--zoom:first-child { margin-top: 18px; }
+.tl-cap { font-family: var(--display); font-size: 7px; line-height: 1.6; color: var(--muted); margin-bottom: 12px; }
+.tl-bar { position: relative; height: 16px; background: var(--paper); box-shadow: 0 0 0 3px var(--ink); margin: 0 3px; }
+.tl-bar--earth { height: 14px; margin-bottom: 0; }
+.tl-pre {
+  position: absolute; inset: 0 auto 0 0;
+  display: flex; align-items: center; padding-left: 6px;
+  font-family: var(--display); font-size: 6px; color: var(--paper-3);
+  background: var(--charcoal);
+  overflow: hidden; white-space: nowrap;
+}
+.tl-span { position: absolute; top: 0; bottom: 0; right: 0; background: var(--gold); box-shadow: -3px 0 0 var(--ink); }
+.tl-zoom { display: block; width: calc(100% - 6px); height: 14px; margin: 3px 3px 8px; overflow: visible; }
+.tl-zoom line { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 3 3; }
+.tl-groups { position: relative; height: 14px; margin: 0 3px 18px; }
+.tl-groups span {
+  position: absolute; bottom: 0;
+  display: flex; justify-content: center;
+  font-family: var(--display); font-size: 6px; line-height: 1;
+  white-space: nowrap;
+  padding-bottom: 4px; border-bottom: 3px solid var(--green-light);
+  box-shadow: inset 2px 0 0 var(--paper-2);
+  color: var(--green);
+}
+/* narrow end groups: let the label overflow inward instead of off the card */
+.tl-groups span:first-child { justify-content: flex-start; }
+.tl-groups span:last-child { justify-content: flex-end; }
+.tl-seg { position: absolute; top: 0; bottom: 0; background: var(--green-pale); box-shadow: inset -1px 0 0 var(--ink); display: flex; align-items: center; justify-content: center; }
+.tl-seg.is-alt { background: var(--green-light); }
+.tl-seg.is-answer { background: var(--gold); box-shadow: 0 0 0 2px var(--ink); z-index: 1; min-width: 4px; animation: blink 0.4s steps(1) 2.2s 3; }
+.tl-seg__txt { font-family: var(--display); font-size: 6px; color: var(--shell-dark); }
+.tl-seg.is-answer .tl-seg__txt { color: var(--ink); }
+.tl-bar--zoom { clip-path: inset(-20px -12px -4px -12px); animation: fill-in 0.6s steps(12) 1.4s both; }
+.tl-marker {
+  position: absolute; top: -15px; z-index: 2;
+  transform: translateX(-50%);
+  font-size: 11px; line-height: 1; color: var(--red);
+  text-shadow: 1px 1px 0 var(--ink);
+  animation: drop 0.4s steps(4) 2s both;
+}
+.tl-bar--earth .tl-marker { animation-delay: 1.2s; }
+.tl-ends { display: flex; justify-content: space-between; margin: 6px 0 0; font-family: var(--display); font-size: 6px; line-height: 1.6; color: var(--muted); }
+.tl-caption { margin: 8px 0 0; font-size: 17px; }
+.tl-caption b { font-family: var(--display); font-size: 11px; font-weight: normal; color: var(--shell); }
+.tl-clock { margin: 2px 0 0; font-family: var(--prose); font-size: 15px; line-height: 1.5; }
+
 /* ---------- Dev panel (development builds only) ---------- */
 
 .dev { margin-top: 8px; padding: 8px; background: #3a2a4a; color: var(--paper); border: 3px dashed var(--gold); }
@@ -364,6 +436,13 @@ button { cursor: pointer; }
 @keyframes pixel-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 @keyframes blink { 50% { opacity: 0.35; } }
 @keyframes pulse { 50% { filter: brightness(1.15); } }
+@keyframes stamp { from { transform: scale(1.12); } to { transform: none; } }
+@keyframes scan-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+@keyframes flash { 50% { opacity: 0.6; } }
+@keyframes type { from { width: 0; } }
+@keyframes caret { 50% { opacity: 1; } }
+@keyframes fill-in { from { clip-path: inset(-20px 100% -4px -12px); } }
+@keyframes drop { from { opacity: 0; transform: translate(-50%, -8px); } to { opacity: 1; transform: translate(-50%, 0); } }
 @keyframes shake { 33% { transform: translateX(-3px); } 66% { transform: translateX(3px); } }
 
 @media (prefers-reduced-motion: reduce) {

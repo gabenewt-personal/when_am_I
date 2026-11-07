@@ -1,6 +1,6 @@
 import { normalize } from "../text";
 import { isValidDateKey } from "../schedule";
-import type { CategoriesFile, ScenariosFile, ScheduleFile } from "./types";
+import type { CategoriesFile, Category, ScenariosFile, ScheduleFile } from "./types";
 
 export const CLUE_COUNT = 6;
 
@@ -57,6 +57,7 @@ export function validateContent(
       }
     }
     optionIdsByCategory.set(c.id, ids);
+    if (c.timeline) validateTimeline(c, err);
   }
 
   // ---- scenarios ----
@@ -122,3 +123,30 @@ export function validateContent(
 
   return errors;
 }
+
+/** Timeline spans must be numeric, run in one direction (older first) and leave no gaps or overlaps. */
+function validateTimeline(c: Category, err: (msg: string) => void) {
+  const where = `category "${c.id}" timeline`;
+  const t = c.timeline!;
+  if (t.kind !== "deep-time" && t.kind !== "decades") err(`${where}: kind must be "deep-time" or "decades"`);
+  // deep time counts down (Ma before present); calendar years count up
+  const forward = t.kind === "decades";
+  const ordered = (a: number, b: number) => (forward ? a < b : a > b);
+  const isNum = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
+  c.options.forEach((o, i) => {
+    if (!isNum(o.start) || !isNum(o.end)) {
+      err(`${where}: option "${o.id}" needs numeric start and end`);
+      return;
+    }
+    if (!ordered(o.start, o.end)) err(`${where}: option "${o.id}" span runs the wrong way`);
+    const next = c.options[i + 1];
+    if (next && isNum(next.start) && next.start !== o.end) err(`${where}: gap or overlap between "${o.id}" and "${next.id}"`);
+  });
+  for (const g of t.groups ?? []) {
+    if (!nonEmptyStr(g.label) || !isNum(g.start) || !isNum(g.end) || !ordered(g.start, g.end)) {
+      err(`${where}: invalid group "${g.label}"`);
+    }
+  }
+}
+
+const nonEmptyStr = (v: unknown) => typeof v === "string" && v.trim().length > 0;

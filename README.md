@@ -31,14 +31,16 @@ The app is a **static export** (`output: "export"`): no server, database, API ke
 
 | Module | Responsibility |
 |---|---|
-| `data/categories.json` | Canonical answer pools per category (the *entire* valid list), with aliases |
-| `data/scenarios.json` | Authored six-clue mysteries (clue text preserved word for word) |
+| `data/categories.json` | Canonical answer pools per category (the *entire* valid list), with aliases and timeline spans (ICS dates in Ma; decade years) |
+| `data/scenarios.json` | Authored six-clue mysteries (see *Clue revisions* below) |
 | `data/schedule.json` | Date → scenario manifest (see below) |
 | `src/lib/content/validate.ts` | Build-time validation: category exists, answer is in category, exactly six non-empty clues, unique ids, epilogue present, alias collisions, valid source URLs, valid and unique schedule dates |
 | `src/lib/content/load.ts` | Build-time loader: strips editor-only fields, swaps descriptive ids for opaque ones, seals post-solve content |
 | `src/lib/schedule.ts` | Single UTC reset, date keys, puzzle numbering, scenario pick |
 | `src/lib/search.ts` | Autocomplete: case/accent/punctuation/plural tolerant, aliases, canonical order |
 | `src/lib/game.ts` | Pure state machine and scoring (100/80/60/40/20/10) |
+| `src/lib/timeline.ts` | Post-solve timeline layout (proportional periods inside Earth's 4.567 Gyr; equal decade cells) |
+| `src/lib/viewport.ts` | Visual-viewport scroll helpers for the on-screen keyboard |
 | `src/lib/persistence.ts` | localStorage: replay-based restore, history, streak |
 | `src/art/` | Clue-gated SVG pixel scenes (placeholders) |
 | `src/components/` | Home, Mystery, Discovery, accessible Combobox, DevPanel |
@@ -72,7 +74,9 @@ A future **Where Am I?** mode is a new category with `"mode": "where"` plus scen
 
 ### Accessibility
 
-ARIA 1.2 combobox with listbox, `aria-activedescendant`, and arrow-key navigation. **Enter selects and never submits.** Escape closes the menu. Answers you've already tried are disabled and marked. Focus outlines are visible, tap targets are at least 44px, the input font is 18px (no iOS zoom), and the field scrolls above the on-screen keyboard. Feedback is announced through an `aria-live` region, and all animation is disabled under `prefers-reduced-motion`.
+ARIA 1.2 combobox with listbox, `aria-activedescendant`, and arrow-key navigation. **Enter selects and never submits.** Escape closes the menu. Answers you've already tried are disabled and marked. Focus outlines are visible, tap targets are at least 44px, and the input font is 18px (no iOS zoom). When a new clue appears, focus moves to it and the page scrolls so that clue and the answer field are both on screen.
+
+**Mobile keyboard:** when you focus the field it scrolls only far enough to leave room for about four options above the keyboard, so the end of the latest clue stays visible. The list is sized to the *visual* viewport, which `vh` doesn't track. After you pick on a touch screen, focus moves to **Guess** and the keyboard closes. `interactive-widget=resizes-content` makes Android Chrome shrink the layout when the keyboard opens. Resuming a round opens at the latest clue. Feedback is announced through an `aria-live` region, and all animation is disabled under `prefers-reduced-motion`.
 
 ## Placeholder art and demo limitations
 
@@ -82,6 +86,20 @@ ARIA 1.2 combobox with listbox, `aria-activedescendant`, and arrow-key navigatio
 - **No service worker.** After the page loads it plays fully offline, but reloading while offline needs a cached copy.
 - Streaks are per-browser (localStorage). There are no accounts, by design.
 
+## Clue revisions (v2)
+
+Early clues were tightened so each carries one real piece of evidence without giving the answer away. Later beats are unchanged, and every revision still matches the art layer gated to that clue.
+
+| Mystery | Clue | Evidence added |
+|---|---|---|
+| carboniferous-swamp | 1, 2, 3 | Air that "holds more than it should" (high oxygen); trunks with diamond scars instead of bark (lycopsids); clubmosses "as tall as houses" |
+| jazz-after-dark | 1, 2 | Music below the street that someone hushes (secrecy); horse-drawn wagons still on the road |
+| jurassic-river | 1, 2 | Three-toed tracks (dinosaurs exist); no flowers anywhere (before flowering plants spread) |
+| world-watches-moon | 1, 2, 6 | Black-and-white TV and station wagons; war "in Southeast Asia"; clue 6 no longer states the year |
+| devonian-shallows | 1 | Only low, leafless stalks on shore (early land plants) |
+| dust-on-windowsill | 1, 4 | Damp sheet hung across the door (a Dust Bowl practice); failed bank |
+| last-dinosaur-forest | 1 | Feathered flyers alongside skin-winged ones (birds and pterosaurs together) |
+
 ## Review before public launch
 
 Content and factual questions for an editor:
@@ -89,9 +107,10 @@ Content and factual questions for an editor:
 1. **"Geologic Periods" covers only the 12 Phanerozoic periods.** The ICS chart also has Precambrian periods (Ediacaran, Cryogenian, Tonian, …). Either rename the category (e.g. "Phanerozoic Periods") or add them so the pool really is complete.
 2. **Common near-misses have no entry:** *Tertiary* (informal, now Paleogene + Neogene), *Mississippian/Pennsylvanian* (U.S. sub-periods of the Carboniferous). Players typing these get "not in this category". Decide whether to alias them or leave them unmatched on purpose.
 3. **"1900s"** can read as the whole century. Consider the label "1900s (1900–1909)".
-4. **`world-watches-moon` clue 6 says "It is July 1969"**, which effectively names the answer. CONTENT_GUIDE asks for near certainty *without* naming it outright.
+4. ~~`world-watches-moon` clue 6 named "July 1969".~~ Rewritten around the promise to land on the Moon "before the decade was out".
 5. **`jazz-after-dark` clue 6:** Prohibition ran 1920–1933, so "the country has banned alcohol" alone also fits the early 1930s. "Jazz Age" carries the clue. Probably fine; worth a conscious call.
 6. **`carboniferous-swamp`:** the giant griffinfly (Meganeura-type, ~65–70 cm wingspan) is latest Carboniferous (~300 Ma), versus the ~310 Ma anchor. Close, but check against the sources.
 7. **Check that every `sourceUrls` link resolves**, especially `carboniferous.stratigraphy.org`. They were not fetched during this build.
 8. **Epilogue dates match ICS boundaries** (Carboniferous 358.9–298.9 Ma, Jurassic 201.4–145, Devonian 419.2–358.9, Cretaceous end 66.0). Rounding is consistent.
-9. **Share squares:** the brief's example (`🟩🟨⬜…` for 80) doesn't map cleanly to one clue per square, so the game uses 🟨 miss · ⬛ revealed · 🟩 solved · 🟥 final miss (e.g. `🟨🟩⬜⬜⬜⬜ · 80/100`). Confirm or adjust in `src/lib/share.ts`.
+9. **Review the v2 clue changes** above, particularly the oxygen hint (Carboniferous O₂ peaked around 30–35%) and the damp sheet in the doorway (documented in Dust Bowl oral histories).
+10. **Share squares:** the brief's example (`🟩🟨⬜…` for 80) doesn't map cleanly to one clue per square, so the game uses 🟨 miss · ⬛ revealed · 🟩 solved · 🟥 final miss (e.g. `🟨🟩⬜⬜⬜⬜ · 80/100`). Confirm or adjust in `src/lib/share.ts`.

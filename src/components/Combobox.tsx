@@ -1,25 +1,35 @@
 "use client";
 
-import { useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import type { Category, CategoryOption } from "@/lib/content/types";
 import { exactOption, suggest } from "@/lib/search";
+import { isCoarsePointer, scrollByDelta, visibleArea } from "@/lib/viewport";
+
+/** Room the open list wants below the field: about four options. */
+const LIST_ROOM = 220;
 
 /**
  * Accessible autocomplete (WAI-ARIA 1.2 combobox + listbox).
  * - The full category list shows on focus; typing filters it.
  * - ↑/↓ move, Enter SELECTS the highlighted option (never submits), Esc closes.
  * - Only a selected option counts. Free text is never accepted as a guess.
+ * - Mobile: the field scrolls just far enough to leave room for the list above the
+ *   on-screen keyboard, the list is sized to the *visible* area, and after a pick on a
+ *   touch screen focus moves to the Guess button (closing the keyboard).
  */
 export function Combobox({
   category,
   triedIds,
   selected,
   onSelect,
+  onPicked,
 }: {
   category: Category;
   triedIds: ReadonlySet<string>;
   selected: CategoryOption | null;
   onSelect: (option: CategoryOption | null) => void;
+  /** Called after an option is chosen on a touch device (e.g. to focus the submit button). */
+  onPicked?: () => void;
 }) {
   const id = useId();
   const listId = `${id}-list`;
@@ -27,6 +37,49 @@ export function Combobox({
   const [text, setText] = useState(selected?.label ?? "");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
+  const comboRef = useRef<HTMLDivElement>(null);
+  const [maxHeight, setMaxHeight] = useState<number>();
+  const revealUntil = useRef(0);
+
+  // Scroll only as much as needed so the list has room above the keyboard,
+  // leaving as much of the clue text above in view as possible.
+  const keepInView = useCallback(() => {
+    const el = comboRef.current;
+    if (!el) return;
+    const view = visibleArea();
+    const r = el.getBoundingClientRect();
+    const topLimit = r.top - (view.top + 8);
+    const room = view.top + view.height - r.bottom;
+    scrollByDelta(topLimit < 0 ? topLimit : Math.min(Math.max(0, LIST_ROOM - room), topLimit));
+  }, []);
+
+  // Size the list to the visible area (vh ignores the on-screen keyboard).
+  const fitList = useCallback(() => {
+    const input = inputRef.current;
+    if (!input) return;
+    const view = visibleArea();
+    const below = view.top + view.height - input.getBoundingClientRect().bottom - 18;
+    setMaxHeight(Math.max(132, Math.min(300, Math.floor(below))));
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    fitList();
+    const vv = window.visualViewport;
+    // The keyboard finishing its slide-in resizes the visual viewport: re-check once.
+    const onResize = () => {
+      if (Date.now() < revealUntil.current) keepInView();
+      fitList();
+    };
+    vv?.addEventListener("resize", onResize);
+    vv?.addEventListener("scroll", fitList);
+    window.addEventListener("scroll", fitList, { passive: true });
+    return () => {
+      vv?.removeEventListener("resize", onResize);
+      vv?.removeEventListener("scroll", fitList);
+      window.removeEventListener("scroll", fitList);
+    };
+  }, [open, fitList, keepInView]);
 
   const results = useMemo(() => suggest(category, selected && text === selected.label ? "" : text), [category, text, selected]);
   const enabledIdx = results.map((r, i) => (triedIds.has(r.option.id) ? -1 : i)).filter((i) => i >= 0);
@@ -42,6 +95,8 @@ export function Combobox({
     setText(option.label);
     setOpen(false);
     setActive(-1);
+    // Wait for the Guess button to enable before moving focus to it.
+    if (onPicked && isCoarsePointer()) setTimeout(onPicked, 0);
   };
 
   const move = (dir: 1 | -1) => {
@@ -86,7 +141,7 @@ export function Combobox({
   };
 
   return (
-    <div className="combo">
+    <div className="combo" ref={comboRef}>
       <label className="label" htmlFor={`${id}-input`}>
         When am I?
       </label>
@@ -106,6 +161,7 @@ export function Combobox({
         autoCapitalize="off"
         spellCheck={false}
         enterKeyHint="done"
+        inputMode="text"
         placeholder={`Search ${category.label.toLowerCase()}…`}
         value={text}
         onChange={(e) => {
@@ -121,8 +177,8 @@ export function Combobox({
         }}
         onFocus={() => {
           openMenu();
-          // keep the field (and Submit beside it) above the on-screen keyboard
-          setTimeout(() => inputRef.current?.scrollIntoView({ block: "start", behavior: "smooth" }), 250);
+          revealUntil.current = Date.now() + 1000;
+          requestAnimationFrame(keepInView);
         }}
         onClick={() => openMenu()}
         onBlur={() => setOpen(false)}
@@ -131,7 +187,10 @@ export function Combobox({
       <p id={`${id}-help`} className="sr-only">
         Choose one answer from the list. Use the arrow keys to browse and Enter to select.
       </p>
-      <ul id={listId} role="listbox" aria-label={`${category.label} answers`} className="combo__list" hidden={!open}>
+      <ul id={listId} role="listbox" aria-label={`${category.label} answers`} className="combo__list"
+        hidden={!open}
+        style={maxHeight ? { maxHeight } : undefined}
+      >
         {results.length === 0 && (
           <li className="combo__empty" role="presentation">
             Not in this category. Try another term.

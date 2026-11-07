@@ -6,6 +6,23 @@ export interface CategoryOption {
   id: string;
   label: string;
   aliases: string[];
+  /** Timeline span in the category's timeline unit (deep time: Ma, older first; decades: years, end exclusive). */
+  start?: number;
+  end?: number;
+}
+
+export interface TimelineGroup {
+  label: string;
+  start: number;
+  end: number;
+}
+
+/** Optional post-solve timeline. Options must then be contiguous spans in canonical order. */
+export interface CategoryTimeline {
+  kind: "deep-time" | "decades";
+  unit: "Ma" | "year";
+  source?: string;
+  groups?: TimelineGroup[];
 }
 
 export interface Category {
@@ -13,6 +30,7 @@ export interface Category {
   label: string;
   mode: CategoryMode;
   subtitle: string;
+  timeline?: CategoryTimeline;
   options: CategoryOption[];
 }
 

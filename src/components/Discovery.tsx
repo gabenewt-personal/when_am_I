@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { SceneArt } from "@/art/SceneArt";
 import type { Category, Revelation } from "@/lib/content/types";
 import { MAX_CLUES, POINTS, type GameState } from "@/lib/game";
 import { shareSquares, shareText } from "@/lib/share";
+import { Timeline } from "./Timeline";
 
 export function Discovery({
   category,
@@ -52,7 +53,7 @@ export function Discovery({
         </span>
       </div>
 
-      <figure className="scene">
+      <figure className="scene scene--reveal">
         <SceneArt artId={artId} stage={MAX_CLUES} />
       </figure>
 
@@ -60,10 +61,17 @@ export function Discovery({
         <p className="label">{revelation.sceneTitle}</p>
         <h2 className="answer">
           <span className="label">{category.label}</span>
-          {answer}
+          <span className="answer__type" style={{ "--n": answer.length } as CSSProperties}>
+            {answer}
+          </span>
+          <span className="answer__caret" aria-hidden="true">
+            ▌
+          </span>
         </h2>
         <p className="epilogue">{revelation.epilogue}</p>
       </div>
+
+      <Timeline category={category} answerId={revelation.answerId} />
 
       <div className="card path">
         <span className="label">Your path</span>

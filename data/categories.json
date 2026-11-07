@@ -10,64 +10,110 @@
         {
           "id": "cambrian",
           "label": "Cambrian",
-          "aliases": []
+          "aliases": [],
+          "start": 538.8,
+          "end": 485.4
         },
         {
           "id": "ordovician",
           "label": "Ordovician",
-          "aliases": []
+          "aliases": [],
+          "start": 485.4,
+          "end": 443.8
         },
         {
           "id": "silurian",
           "label": "Silurian",
-          "aliases": []
+          "aliases": [],
+          "start": 443.8,
+          "end": 419.2
         },
         {
           "id": "devonian",
           "label": "Devonian",
-          "aliases": []
+          "aliases": [],
+          "start": 419.2,
+          "end": 358.9
         },
         {
           "id": "carboniferous",
           "label": "Carboniferous",
-          "aliases": []
+          "aliases": [],
+          "start": 358.9,
+          "end": 298.9
         },
         {
           "id": "permian",
           "label": "Permian",
-          "aliases": []
+          "aliases": [],
+          "start": 298.9,
+          "end": 251.902
         },
         {
           "id": "triassic",
           "label": "Triassic",
-          "aliases": []
+          "aliases": [],
+          "start": 251.902,
+          "end": 201.4
         },
         {
           "id": "jurassic",
           "label": "Jurassic",
-          "aliases": []
+          "aliases": [],
+          "start": 201.4,
+          "end": 145.0
         },
         {
           "id": "cretaceous",
           "label": "Cretaceous",
-          "aliases": []
+          "aliases": [],
+          "start": 145.0,
+          "end": 66.0
         },
         {
           "id": "paleogene",
           "label": "Paleogene",
-          "aliases": []
+          "aliases": [],
+          "start": 66.0,
+          "end": 23.03
         },
         {
           "id": "neogene",
           "label": "Neogene",
-          "aliases": []
+          "aliases": [],
+          "start": 23.03,
+          "end": 2.58
         },
         {
           "id": "quaternary",
           "label": "Quaternary",
-          "aliases": []
+          "aliases": [],
+          "start": 2.58,
+          "end": 0
         }
-      ]
+      ],
+      "timeline": {
+        "kind": "deep-time",
+        "unit": "Ma",
+        "source": "ICS International Chronostratigraphic Chart v2023/09",
+        "groups": [
+          {
+            "label": "Paleozoic",
+            "start": 538.8,
+            "end": 251.902
+          },
+          {
+            "label": "Mesozoic",
+            "start": 251.902,
+            "end": 66.0
+          },
+          {
+            "label": "Cenozoic",
+            "start": 66.0,
+            "end": 0
+          }
+        ]
+      }
     },
     {
       "id": "us-history-decades",
@@ -78,12 +124,16 @@
         {
           "id": "1900s",
           "label": "1900s",
-          "aliases": []
+          "aliases": [],
+          "start": 1900,
+          "end": 1910
         },
         {
           "id": "1910s",
           "label": "1910s",
-          "aliases": []
+          "aliases": [],
+          "start": 1910,
+          "end": 1920
         },
         {
           "id": "1920s",
@@ -91,63 +141,89 @@
           "aliases": [
             "Roaring Twenties",
             "nineteen twenties"
-          ]
+          ],
+          "start": 1920,
+          "end": 1930
         },
         {
           "id": "1930s",
           "label": "1930s",
           "aliases": [
             "nineteen thirties"
-          ]
+          ],
+          "start": 1930,
+          "end": 1940
         },
         {
           "id": "1940s",
           "label": "1940s",
-          "aliases": []
+          "aliases": [],
+          "start": 1940,
+          "end": 1950
         },
         {
           "id": "1950s",
           "label": "1950s",
-          "aliases": []
+          "aliases": [],
+          "start": 1950,
+          "end": 1960
         },
         {
           "id": "1960s",
           "label": "1960s",
           "aliases": [
             "nineteen sixties"
-          ]
+          ],
+          "start": 1960,
+          "end": 1970
         },
         {
           "id": "1970s",
           "label": "1970s",
-          "aliases": []
+          "aliases": [],
+          "start": 1970,
+          "end": 1980
         },
         {
           "id": "1980s",
           "label": "1980s",
-          "aliases": []
+          "aliases": [],
+          "start": 1980,
+          "end": 1990
         },
         {
           "id": "1990s",
           "label": "1990s",
-          "aliases": []
+          "aliases": [],
+          "start": 1990,
+          "end": 2000
         },
         {
           "id": "2000s",
           "label": "2000s",
-          "aliases": []
+          "aliases": [],
+          "start": 2000,
+          "end": 2010
         },
         {
           "id": "2010s",
           "label": "2010s",
-          "aliases": []
+          "aliases": [],
+          "start": 2010,
+          "end": 2020
         },
         {
           "id": "2020s",
           "label": "2020s",
-          "aliases": []
+          "aliases": [],
+          "start": 2020,
+          "end": 2030
         }
-      ]
+      ],
+      "timeline": {
+        "kind": "decades",
+        "unit": "year"
+      }
     }
   ]
 }

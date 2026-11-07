@@ -10,9 +10,9 @@
       "sceneTitle": "Beneath the Coal Forest",
       "contextForEditor": "Late Carboniferous, ~310 million years ago, lowland coal swamp in what is now Euramerica.",
       "clues": [
-        "You wake beneath a ceiling of green. Warm mist clings to your skin, and the ground gives beneath your feet like a soaked sponge.",
-        "Water threads through a forest of strangely patterned trunks. There is no birdsong, only the faint splash of something moving in the shallows.",
-        "Towering clubmosses and horsetails crowd the light. You search the undergrowth for a single flower and find none.",
+        "You wake beneath a ceiling of green. Warm mist clings to your skin, the ground gives beneath your feet like a soaked sponge, and every breath feels strangely rich, as if the air holds more than it should.",
+        "Water threads through a forest of trunks patterned with diamond-shaped scars instead of bark. There is no birdsong, only the faint splash of something moving in the shallows.",
+        "Clubmosses as tall as houses and towering horsetails crowd the light. You search the undergrowth for a single flower and find none.",
         "A dragonfly-like hunter cuts through the humid air, its strange wings stretching more than half a meter across.",
         "A huge, many-legged arthropod moves through the fallen vegetation. Amphibious creatures wait along the dark pools.",
         "These swamp forests will leave immense coal seams behind. You are standing roughly 310 million years before your own time."
@@ -31,8 +31,8 @@
       "sceneTitle": "A Door Without a Sign",
       "contextForEditor": "United States urban nightlife, late 1920s, during Prohibition.",
       "clues": [
-        "You wake to the clatter of traffic and the smell of rain rising from warm pavement. Music leaks from somewhere below the street.",
-        "A newsboy calls out headlines while a motorcar squeezes past a streetcar. The city seems intent on moving faster than its own shadows.",
+        "You wake to the clatter of traffic and the smell of rain rising from warm pavement. Music leaks from somewhere below the street, and someone nearby quickly hushes it.",
+        "A newsboy calls out headlines while a motorcar squeezes past a streetcar. A few horse-drawn wagons still share the road, though the city seems intent on leaving them behind.",
         "A voice crackles from a radio in a shop window. Nearby, a woman with a sharply bobbed haircut laughs beneath a cloche hat.",
         "After dark, a brass horn pulls you toward an unmarked basement door. Someone on the other side asks you for a word you do not know.",
         "Inside, the band is playing jazz and the drinks are poured discreetly. The club has plenty of customers, but no lawful right to sell liquor.",
@@ -52,8 +52,8 @@
       "sceneTitle": "The River of Giants",
       "contextForEditor": "Late Jurassic, ~150 million years ago, vegetated North American floodplain.",
       "clues": [
-        "You wake beside a broad river. The air smells of wet earth, and distant thunder rolls across a flat green horizon.",
-        "Conifers and cycads crowd the banks. There is no familiar meadow grass, and no flowering shrub to break the endless green.",
+        "You wake beside a broad river. The air smells of wet earth, distant thunder rolls across a flat green horizon, and the mud at your feet is pressed with three-toed tracks wider than your hand.",
+        "Conifers, cycads and ferns crowd the banks. There is no familiar meadow grass, and not a single flower breaks the endless green.",
         "The earth trembles with slow, heavy footsteps. Far away, something tall moves above the treetops, bending branches as it feeds.",
         "A long-necked dinosaur emerges along the water, its massive body moving with a patience that makes you feel very small.",
         "Another animal crosses a patch of sun, its back edged with tall bony plates. The river plain is ruled by sauropods and their armored neighbors.",
@@ -72,12 +72,12 @@
       "sceneTitle": "The Whole World Watching",
       "contextForEditor": "United States, July 1969, lunar landing television coverage.",
       "clues": [
-        "You wake to the hum of a television in the next room. Outside, summer heat settles over a neighborhood of small front lawns.",
-        "A transistor radio plays popular music with a sharp electric edge. In the paper, images of demonstrations sit beside reports from a distant war.",
+        "You wake to the hum of a black-and-white television in the next room. Outside, summer heat settles over a neighborhood of small front lawns and station wagons.",
+        "A transistor radio plays popular music with a sharp electric edge. In the paper, images of demonstrations sit beside reports from a distant war in Southeast Asia.",
         "Inside a school, brightly colored diagrams show rockets and the planets. Children argue about whether people will ever really cross the space between worlds.",
         "At dinner, the grown-ups talk about astronauts as if they were neighbors. A distant rivalry between two superpowers seems to reach all the way into the sky.",
         "Families gather around television sets to watch a spacecraft approach the Moon. The grainy picture is carried into millions of living rooms.",
-        "It is July 1969. A human being is about to step onto another world, and nearly everyone with a television is watching."
+        "Years ago, a president promised that Americans would reach the Moon before the decade was out. Tonight that promise is about to be kept, and nearly everyone with a television is watching."
       ],
       "epilogue": "The 1960s saw the Space Race culminate in Apollo 11’s first crewed Moon landing in July 1969, alongside profound political and cultural change in the United States.",
       "visualBrief": "Start inside an indistinct mid-century living room, then add transistor radio, rocket school diagram, and finally a tiny monochrome TV image of lunar terrain only at clue 5.",
@@ -92,7 +92,7 @@
       "sceneTitle": "The Water Before the Forest",
       "contextForEditor": "Late Devonian, ~375 million years ago, coastal shallows and emerging vegetation.",
       "clues": [
-        "You wake at the edge of a shallow estuary. The tide leaves shining pools among the mud, and the wind smells sharply of salt.",
+        "You wake at the edge of a shallow estuary. The tide leaves shining pools among the mud, the wind smells sharply of salt, and only low, leafless green stalks fringe the shore where you stand.",
         "The land is surprisingly bare in places, but strange stands of early trees rise along the water. Their shadows fall across soil that seems newly made.",
         "The shallows are alive with fish of unfamiliar shapes, some enclosed in plates of bony armor. The water feels far more crowded than the shore.",
         "A broad-headed creature braces itself in the shallows on sturdy, limb-like fins. It does not quite belong to the sea or the land you recognize.",
@@ -113,10 +113,10 @@
       "sceneTitle": "A Sky Made of Dust",
       "contextForEditor": "Oklahoma Panhandle, April 1935, Dust Bowl during Great Depression.",
       "clues": [
-        "You wake to an orange light at the window. The house is still, but the air tastes faintly of earth.",
+        "You wake to an orange light at the window. The house is still, the air tastes faintly of earth, and someone has hung a damp sheet across the doorway.",
         "Outside, a field lies bare and cracked. At the fence line, wind has heaped the loose soil into drifts as if it were winter snow.",
         "A family has tucked rags around the doors, yet fine dust settles on the table. Someone speaks quietly about another failed crop.",
-        "A neighbor mentions leaving for California. Work is scarce everywhere, and the farm has become harder to defend with every season.",
+        "A neighbor mentions leaving for California. The bank in town has failed, work is scarce everywhere, and the farm has become harder to defend with every season.",
         "By afternoon a wall of darkness rises across the plains. The wind turns the sky black in a storm people have begun calling a black blizzard.",
         "It is the middle of the Great Depression. Across the southern Plains, drought and blowing topsoil have given this disaster its name: the Dust Bowl."
       ],
@@ -134,7 +134,7 @@
       "sceneTitle": "Before the Silence",
       "contextForEditor": "Late Cretaceous western North America, ~68 million years ago.",
       "clues": [
-        "You wake beside a river in a warm lowland forest. Small flying creatures stir in the light, and the damp air carries the scent of leaves.",
+        "You wake beside a river in a warm lowland forest. Small flying creatures stir in the light, some feathered and some on wings of stretched skin, and the damp air carries the scent of leaves.",
         "Unlike some ancient landscapes, this one has flowering plants among its ferns and conifers. The world looks strange, but unexpectedly familiar.",
         "Across the water, enormous animals move through the undergrowth. One pushes a broad, beaked head through the foliage.",
         "A three-horned giant stands at the forest edge, turning its great shield-like frill toward a sudden sound.",
